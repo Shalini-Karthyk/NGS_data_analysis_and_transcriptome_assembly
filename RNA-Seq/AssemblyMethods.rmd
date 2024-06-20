@@ -1,0 +1,46 @@
+# Using Trinity for the both reference guided and de-novo assembly 
+
+/usr/local/programs/trinityrnaseq-Trinity-v2.8.4/Trinity
+This will show the parameters of the Trinity . It uses the bam files to do the assembly, which follows certain steps to process the files to do the assembly.
+
+>> Merge all bam files
+
+>> Assembling the transcriptome and assembly statistics[1]
+
+>> Trinity Denovo assembly and assembly statistics[2][
+
+# Merge all bam files
+
+The Paired, Unpaired, sam and bam files are all accessed from the module 06.
+The bam files are merged and the AipAll.bam is added in the bam folder.
+Gives the bamIn.txt the reddirected output
+Uses genome guided max intron is used to specify the distance trinity will allow for the segment 
+ 
+# Assembling the transcriptome and assembly statistics
+
+Assembling the transcriptome is done in the runTrinity.sh program with assemble the reads from the merged bam file into a transcriptome.
+The trinity assemble uses the genome guided bam also gives trinity.log and trinity.err to check the process.
+The Assembly statistics is calculated for transcriptome assembly with analyzeTrinity.sh which runs TrinityStats.pl.
+
+# Trinity Denovo assembly and assembly statistics
+
+Requires the comma seperated lists of left and right reads.
+Add the trinity assembly command from the trinity help and new output directory is specified to take all the outputs from the denovo assembly.
+The stats are ran on the trinity. fasta file with the assembly stats.
+
+
+## N50
+
+The N50 in the assembly is the indicators of the length distribvution of the assembly. 
+The algorithms sorts the contigs from the longest to shortest and the moves in the horizontal line until 50% of the assembled bases are above the line and 50% are below.
+The N50 is the contig at this instant.
+The N50 value changes from one run to another for the Denovo and trancriptome, based on the methods it used to align the reads.
+The N50 value seems to have trnscript contig values always hiogher in the Denovo assembly then the Transcriptome assembly.
+
+# References
+
+[1] Haas, B. J., Papanicolaou, A., Yassour, M., Grabherr, M., Blood, P. D., Bowden, J., Couger, M. B., Eccles, D., Li, B., Lieber, M., MacManes, M. D., Ott, M., Orvis, J., Pochet, N., Strozzi, F., Weeks, N., Westerman, R., William, T., Dewey, C. N., … Regev, A. (2013, August). De novo transcript sequence reconstruction from RNA-seq using the Trinity Platform for reference generation and analysis. Nature protocols. Retrieved March 28, 2022, from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3875132/ 
+
+[2] A guide to de novo genome assembly. CD Genomics-the genomics service company. (n.d.). Retrieved March 28, 2022, from https://www.cd-genomics.com/a-guide-to-de-novo-genome-assembly.html#:~:text=De%20novo%20genome%20assembly%20is,sequence%20length%2C%20layout%20or%20composition 
+
+Whats N50? The Molecular Ecologist. (2017, March 29). Retrieved March 28, 2022, from https://www.molecularecologist.com/2017/03/29/whats-n50/ 
